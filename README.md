@@ -1,8 +1,7 @@
-# PIG Datathon - NER
+# CUNLP
 
-run `train_ner.py` to train the NER classifier.
-This transforms the datathon data type into a `FLAIR` dataset and trains the model. The best model will be stored after n epochs.
+This repository has the code for the CUNLP team in the NLP4IF 2019 shared task on propaganda detection.
+https://propaganda.qcri.org/nlp4if-shared-task/
 
-
-To predict using this trained model, change the directories in `predict.py` and run it. This creates a file in the format for the challenge
+Folders SLC and FLC have the code for the sentence level classfication (SLC), and fragment level classification (FLC) subtasks repectively.
 
