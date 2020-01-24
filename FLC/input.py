@@ -6,7 +6,7 @@ from typing import List, Dict
 import re
 from pathlib import Path
 
-from flair.data import Sentence, Token, TaggedCorpus
+from flair.data import Sentence, Token, Corpus
 from nltk.tokenize import sent_tokenize, word_tokenize
 
 class InputParser:
@@ -363,7 +363,7 @@ def read_column_data(
     return sentences, id_list
 
 
-def get_tagged_corpus(data_dir, tokenizer=None, name='JonasIsAwesome', mask_propaganda=False):
+def get_tagged_corpus(data_dir, tokenizer=None, name='propaganda', mask_propaganda=False):
     if tokenizer is None:
         bert_tokenizer = BertTokenizer('/Users/jonaspfeiffer/test/ner-bert-master/BERT/uncased_L-12_H-768_A-12/vocab.txt')
         tokenizer = bert_tokenizer.tokenize
@@ -379,8 +379,8 @@ def get_tagged_corpus(data_dir, tokenizer=None, name='JonasIsAwesome', mask_prop
     dev_sentences, dev_id_list = read_column_data(dev_data.data, {0: 'text', 1: 's_span', 2: 'e_span', 3: 'label'})
     test_sentences, test_id_list = read_column_data(test_data.data, {0: 'text', 1: 's_span', 2: 'e_span', 3: 'label'})
 
-    return TaggedCorpus(train_sentences, dev_sentences, test_sentences, name), {'train': train_id_list, 'test': dev_id_list, 'test':test_id_list}
-    # return TaggedCorpus(train_sentences), {'train': train_id_list}
+    return Corpus(train_sentences, dev_sentences, test_sentences, name), {'train': train_id_list, 'dev': dev_id_list, 'test':test_id_list}
+    # return Corpus(train_sentences), {'train': train_id_list}
 
 
 if __name__ == '__main__':
